@@ -6,7 +6,12 @@ function Square({value, onSquareClick}) {
 
 export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
-  console.log(useState(1));
+
+  function handleClick() {
+    const nextSquares = squares.slice();
+    nextSquares[0] = 'X';
+    setSquares(nextSquares);
+  }
 
   return (
     <>
