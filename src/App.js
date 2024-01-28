@@ -72,11 +72,22 @@ export default function Game() {
       description = 'Go to game start';
     }
 
-    return (
-      <li key = {move}>
+    let currentMoveText;
+    if (move === currentMove) {
+      currentMoveText = 'You are at move # ' + move;
+
+      if (move === 0) {
+        currentMoveText = 'Let\'s start!';
+      }
+    }
+
+    return move === currentMove ?
+      (<li key = {move}>
+        <span>{currentMoveText}</span>
+      </li>) :
+      (<li key = {move}>
         <button onClick = {() => jumpTo(move)}>{description}</button>
-      </li>
-    );
+      </li>);
   });
 
   return (
@@ -85,7 +96,7 @@ export default function Game() {
         <Board xIsNext = {xIsNext} squares = {currentSquares} onPlay = {handlePlay}/>
       </div>
       <div className = "game-info">
-        <ol>{moves}</ol>
+        <ul>{moves}</ul>
       </div>
     </div>
   );
