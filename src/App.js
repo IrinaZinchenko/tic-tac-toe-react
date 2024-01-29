@@ -29,21 +29,18 @@ function Board({xIsNext, squares, onPlay}) {
   }
 
   function createGameBoard() {
-    let board = [];
-    const BOARD_SIZE = 3;
+    return [0, 1, 2].map((row) => (
+      <div key={row} className = "board-row">
+        {
+          [0, 1, 2].map((col) => {
+            const index = 3 * row + col;
 
-    for (let i = 0; i < BOARD_SIZE; i++) {
-      let row = [];
-
-      for (let j = 0; j < BOARD_SIZE; j++) {
-        const index = BOARD_SIZE * i + j
-        row.push(<Square key={index} value={squares[index]} onSquareClick={() => handleClick(index)}/>);
-      }
-
-      board.push(<div key={i} className = "board-row">{row}</div>);
-    }
-
-    return board;
+            return (<Square key={index} value={squares[index]} onSquareClick={() => handleClick(index)}/>)
+          })
+        }
+      </div>
+      )
+    );
   }
 
   return (
